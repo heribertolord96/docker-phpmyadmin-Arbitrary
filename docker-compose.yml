@@ -1,0 +1,32 @@
+version: '3.1'
+
+services:
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 8082:80
+    environment:
+      - PMA_ARBITRARY=1
+      - UPLOAD_LIMIT=10M
+
+networks:
+    sail:
+        driver: bridge
+
+    mysql-network:
+        driver: bridge
+
+volumes:
+    sail-mysql:
+        driver: local
+x-casaos:
+  hostname: ""
+  scheme: http
+  index: /
+  port_map: "8082"
+  author: self
+  category: self
+  icon: https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/PhpMyAdmin_logo.svg/2560px-PhpMyAdmin_logo.svg.png
+  title:
+    custom: pgpMyAdmin Arbitrary
